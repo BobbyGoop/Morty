@@ -14,7 +14,7 @@ public class CommandManager {
 
     // CONSTRUCTOR
     public CommandManager() {
-        findCommands();
+        parseCommands();
     }
 
     // PRIVATE FIELDS
@@ -67,7 +67,7 @@ public class CommandManager {
      * Scan all annotated classes and save its instances
      *
      */
-    private void findCommands() {
+    private void parseCommands() {
         Reflections reflections = new Reflections("me.morty.bot.app.command.commands");
 
         Set<Class<? extends ICommand>> allClasses = reflections.getSubTypesOf(ICommand.class);
@@ -132,7 +132,7 @@ public class CommandManager {
         log.info("Saved command '{}' with aliases: [{}]", cmd.getName(), String.join(",", cmd.getAliases()));
     }
 
-    public Collection<ICommand> getAllCommands() {
+    public Collection<ICommand> getCommands() {
         return commands;
     }
 }

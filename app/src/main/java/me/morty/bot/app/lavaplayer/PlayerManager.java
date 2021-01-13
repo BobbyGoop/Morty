@@ -43,7 +43,7 @@ public class PlayerManager {
                 ctx.send(builder -> builder
                                 .setColor(0x7289da)
                                 .setTitle("Воспроизведение")
-                                .setDescription("Сейчас играет:  ")
+                                .setDescription("Добавлен трек:  ")
                                 .appendDescription(String.format("[%s](%s)", track.getInfo().title, trackUrl))
                                 .appendDescription(String.format(", запрошенный <@%s>", authorID)));
             }
@@ -57,7 +57,7 @@ public class PlayerManager {
                     ctx.send(builder -> builder
                             .setColor(0x7289da)
                             .setTitle("Воспроизведение")
-                            .setDescription("Сейчас играет:  ")
+                            .setDescription("Добавлен трек:  ")
                             .appendDescription(String.format("[%s](%s)", firstFound.getInfo().title, firstFound.getInfo().uri))
                             .appendDescription(String.format(", запросил <@%s>", authorID)));
                 } else {
@@ -67,7 +67,7 @@ public class PlayerManager {
                     ctx.send(builder -> builder
                             .setColor(0x7289da)
                             .setTitle("Воспроизведение")
-                            .setDescription("Добавлены в очередь ")
+                            .setDescription("В очередь добавлен плейлист: ")
                             .appendDescription(String.format("`%s` треков из плейлиста [%s](%s)", tracks.size(), playlist.getName(), trackUrl))
                             .appendDescription(String.format(" (запрошены <@%s>)", authorID)));
                 }
@@ -75,12 +75,12 @@ public class PlayerManager {
 
             @Override
             public void noMatches() {
-                if (ctx.getChannel() != null) ctx.getChannel().sendMessage("Увы, совпадений не найдено");
+                if (ctx.getChannel() != null) ctx.getChannel().sendMessage("Увы, совпадений не найдено").queue();
             }
 
             @Override
             public void loadFailed(FriendlyException exception) {
-                if (ctx.getChannel() != null) ctx.getChannel().sendMessage("Произошла непредвиденная ошибка загрузки трека");
+                if (ctx.getChannel() != null) ctx.getChannel().sendMessage("Произошла непредвиденная ошибка загрузки трека").queue();
             }
         });
     }

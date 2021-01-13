@@ -4,9 +4,10 @@ import me.morty.bot.app.CommandManager;
 import me.morty.bot.app.Config;
 import me.morty.bot.app.command.CommandContext;
 import me.morty.bot.app.command.ICommand;
-import net.dv8tion.jda.api.entities.TextChannel;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HelpCommand implements ICommand {
 
@@ -19,27 +20,36 @@ public class HelpCommand implements ICommand {
     @Override
     public void handle(CommandContext ctx) {
         List<String> args = ctx.getArgs();
-        TextChannel channel = ctx.getChannel();
-
-        //переделать
+        List<String> commandNames = new ArrayList<>();
+        String prefix = Config.getPrefix();
         if (args.isEmpty()) {
-            StringBuilder builder = new StringBuilder();
-            builder.append(" Список доступных команд: \n");
-            manager.getAllCommands().stream().map(ICommand::getName).forEach(
-                    (name) -> builder.append('`').append(Config.getPrefix()).append(name).append("`\n")
+
+
+            manager.getCommands().stream().map(ICommand::getName).forEach(
+                    (name) -> commandNames.add("`" +Config.getPrefix() + name + "`"));
+
+            ctx.send(builder -> builder.setColor(0x7289da)
+                        .setTitle("Команды")
+                        .setDescription("Префикс для комманд: `" + prefix + "`")
+                        .addField("Полный список", manager.getCommands().stream()
+                                        .map(cmd -> "`" + prefix + cmd.getName() + "`")
+                                        .collect(Collectors.joining(" ")),true)
             );
-            channel.sendMessage(builder.toString()).queue();
             return;
         }
 
-        String search = args.get(0);
-        ICommand command = manager.getCommand(search);
+        ICommand command = manager.getCommand(args.get(0));
 
         if (command == null) {
             ctx.send(builder -> builder.setColor(0x7289da).setDescription("Не было найдено команды по запросу"));
         } else {
-            channel.sendMessage('`' + Config.getPrefix() +
-                    command.getName() + "`:" + command.getHelp()).queue();
+            ctx.send(builder -> builder.setColor(0x7289da)
+                    .setTitle(Config.getPrefix() + command.getName())
+                    .addField("Описание: ", command.getHelp(), true)
+                    .addField("Сокращения: ",command.getAliases().stream()
+                            .map(cmd -> "`" + prefix + cmd + "`")
+                            .collect(Collectors.joining(" ")), true)
+            );
         }
     }
 

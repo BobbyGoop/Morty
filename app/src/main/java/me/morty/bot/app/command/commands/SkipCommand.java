@@ -47,4 +47,9 @@ public class SkipCommand implements ICommand {
         return "Пропускает трек";
     }
 
+    @Override
+    public List<String> getAliases() {
+        return List.of("sk");
+    }
+
 }

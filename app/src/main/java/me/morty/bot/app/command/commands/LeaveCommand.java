@@ -3,6 +3,8 @@ package me.morty.bot.app.command.commands;
 import me.morty.bot.app.command.CommandContext;
 import me.morty.bot.app.command.ICommand;
 
+import java.util.List;
+
 public class LeaveCommand implements ICommand {
     @Override
     public void handle(CommandContext ctx) {
@@ -22,6 +24,11 @@ public class LeaveCommand implements ICommand {
     @Override
     public String getHelp() {
         return "Удаляет бота из войсчата";
+    }
+
+    @Override
+    public List<String> getAliases() {
+        return List.of("l", "lv");
     }
 
 }

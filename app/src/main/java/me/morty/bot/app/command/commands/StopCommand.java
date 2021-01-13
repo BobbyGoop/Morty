@@ -5,6 +5,8 @@ import me.morty.bot.app.command.ICommand;
 import me.morty.bot.app.lavaplayer.GuildMusicManager;
 import me.morty.bot.app.lavaplayer.PlayerManager;
 
+import java.util.List;
+
 
 public class StopCommand implements ICommand {
 
@@ -33,5 +35,10 @@ public class StopCommand implements ICommand {
     @Override
     public String getHelp() {
         return "Останавливает воспроизведение";
+    }
+
+    @Override
+    public List<String> getAliases() {
+        return List.of("st");
     }
 }
