@@ -1,0 +1,11 @@
+token: insert your token
+commands{
+
+    prefix: "place it here"
+
+    adminitrator: [
+        insert Admin's IDs
+    ]
+
+}
+
