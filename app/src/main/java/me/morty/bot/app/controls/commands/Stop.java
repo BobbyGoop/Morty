@@ -4,26 +4,23 @@ import me.morty.bot.app.controls.CommandContext;
 import me.morty.bot.app.controls.ICommand;
 import me.morty.bot.app.lavaplayer.GuildMusicManager;
 import me.morty.bot.app.lavaplayer.PlayerManager;
-
 import java.util.List;
-
 
 public class Stop implements ICommand {
 
     @Override
     public void handle(CommandContext ctx) {
+        final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(ctx.getGuild());
 
-        if (ctx.getSelfMember().getVoiceState() == null || !ctx.getSelfMember().getVoiceState().inVoiceChannel()) {
+        if (errorBotState(ctx)) return;
+        if (musicManager.audioPlayer.getPlayingTrack() == null) {
             ctx.send(builder -> builder.setColor(0x7289da)
-                    .setDescription("Бот должен находиться в голосовом чате")
-                    .setTitle("Ошибка"));
+                    .setDescription("В данный момент бот ничего не проигрывает"));
             return;
         }
 
-        final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(ctx.getGuild());
         musicManager.scheduler.player.stopTrack();
         musicManager.scheduler.queue.clear();
-
         ctx.send(builder -> builder.setColor(0x7289da).setDescription("Воспроизведение остановлено"));
     }
 

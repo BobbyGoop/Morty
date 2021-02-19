@@ -7,10 +7,10 @@ import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.managers.AudioManager;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
-public class Play implements ICommand {
+public class PlayNext implements ICommand {
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public void handle(CommandContext ctx) {
 
@@ -18,16 +18,11 @@ public class Play implements ICommand {
         final AudioManager audioManager = ctx.getGuild().getAudioManager();
         String request = String.join(" ", ctx.getArgs());
 
-        if (!ctx.getMember().getVoiceState().inVoiceChannel()) {
-            ctx.send(builder -> builder.setColor(0x7289da)
-                    .setDescription(String.format("<@%s>, Вы должны находиться в голосовом канале", ctx.getAuthor().getId())));
-            return;
-        }
+        if (errorBotState(ctx)) return;
         if (!ctx.getSelfMember().getVoiceState().inVoiceChannel()) {
             audioManager.openAudioConnection(ctx.getMember().getVoiceState().getChannel());
             channel.sendMessageFormat(String.format("Присоединяюсь к `\uD83d\uDD0A %s`",
                     ctx.getMember().getVoiceState().getChannel().getName())).queue();
-
         }
 
         try {
@@ -36,17 +31,22 @@ public class Play implements ICommand {
             request = "ytsearch:" + request;
         }
 
-        PlayerManager.getInstance().loadTracks(ctx, request, false);
+        PlayerManager.getInstance().loadTracks(ctx, request, true);
     }
 
     @Override
     public String getName() {
-        return "play";
+        return "playnext";
     }
 
     @Override
     public String getHelp() {
-        return "Проигрывает определенную песню по запросу либо по ссылке либо добавляет плейлист\n" +
-                "Использование: |префикс|play <ссылка либо или название>";
+        return "Вне очереди проигрывает трек";
+    }
+
+    @Override
+    public List<String> getAliases() {
+        return List.of("pn");
     }
 }
+

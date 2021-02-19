@@ -62,7 +62,6 @@ public class CommandManager {
     }
 
     // PRIVATE METHODS
-
     /**
      * Scan all annotated classes and save its instances
      *

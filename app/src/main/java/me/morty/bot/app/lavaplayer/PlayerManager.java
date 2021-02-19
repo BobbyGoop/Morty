@@ -34,18 +34,30 @@ public class PlayerManager {
         });
     }
 
-    public void loadAndPlay(CommandContext ctx, String trackUrl, String authorID) {
+    public void loadTracks (CommandContext ctx, String trackUrl, Boolean playnext) {
         final GuildMusicManager musicManager = this.getMusicManager(ctx.getGuild());
+        final String authorID = ctx.getAuthor().getId();
         this.audioPlayerManager.loadItemOrdered(musicManager, trackUrl, new AudioLoadResultHandler() {
             @Override
             public void trackLoaded(AudioTrack track) {
-                musicManager.scheduler.queue(track);
-                ctx.send(builder -> builder
-                                .setColor(0x7289da)
-                                .setTitle("Воспроизведение")
-                                .setDescription("Добавлен трек:  ")
-                                .appendDescription(String.format("[%s](%s)", track.getInfo().title, trackUrl))
-                                .appendDescription(String.format(", запрошенный <@%s>", authorID)));
+                if (!playnext) {
+                    musicManager.scheduler.queue(track);
+                    ctx.send(builder -> builder
+                            .setColor(0x7289da)
+                            .setTitle("Воспроизведение")
+                            .setDescription("Добавлен трек:  ")
+                            .appendDescription(String.format("[%s](%s)", track.getInfo().title, trackUrl))
+                            .appendDescription(String.format(", запрошенный <@%s>", authorID)));
+                }
+                else {
+                   musicManager.scheduler.playNext(track);
+                    ctx.send(builder -> builder
+                            .setColor(0x7289da)
+                            .setTitle("Воспроизведение")
+                            .setDescription(" В начало очереди добавлен трек:  ")
+                            .appendDescription(String.format("[%s](%s)", track.getInfo().title, trackUrl))
+                            .appendDescription(String.format(", запрошенный <@%s>", authorID)));
+                }
             }
 
             @Override
@@ -83,7 +95,9 @@ public class PlayerManager {
                 if (ctx.getChannel() != null) ctx.getChannel().sendMessage("Произошла непредвиденная ошибка загрузки трека").queue();
             }
         });
+
     }
+
 
     public static PlayerManager getInstance() {
         if (INSTANCE == null) {
