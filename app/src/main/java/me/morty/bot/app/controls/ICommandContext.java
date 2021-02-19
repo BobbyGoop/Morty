@@ -1,4 +1,4 @@
-package me.morty.bot.app.command;
+package me.morty.bot.app.controls;
 
 import net.dv8tion.jda.api.sharding.ShardManager;
 import net.dv8tion.jda.api.JDA;
@@ -6,14 +6,14 @@ import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 /**
- * Dummy class that holds the basics for a command context
+ * Dummy class that holds the basics for a controls context
  */
 public interface ICommandContext {
 
     /**
-     * Returns the {@link net.dv8tion.jda.api.entities.Guild} for the current command/event
+     * Returns the {@link net.dv8tion.jda.api.entities.Guild} for the current controls/event
      *
-     * @return the {@link net.dv8tion.jda.api.entities.Guild} for this command/event
+     * @return the {@link net.dv8tion.jda.api.entities.Guild} for this controls/event
      */
     default Guild getGuild() {
         return this.getEvent().getGuild();

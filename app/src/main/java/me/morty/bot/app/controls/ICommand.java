@@ -1,4 +1,4 @@
-package me.morty.bot.app.command;
+package me.morty.bot.app.controls;
 
 import java.util.List;
 

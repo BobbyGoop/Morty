@@ -1,13 +1,13 @@
-package me.morty.bot.app.command.commands;
+package me.morty.bot.app.controls.commands;
 
-import me.morty.bot.app.command.CommandContext;
-import me.morty.bot.app.command.ICommand;
+import me.morty.bot.app.controls.CommandContext;
+import me.morty.bot.app.controls.ICommand;
 import net.dv8tion.jda.api.entities.TextChannel;
 import org.jsoup.internal.StringUtil;
 
 import java.util.List;
 
-public class EchoCommand implements ICommand {
+public class Echo implements ICommand {
 
 
     @Override

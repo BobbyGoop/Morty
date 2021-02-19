@@ -1,7 +1,7 @@
-package me.morty.bot.app.command.commands;
+package me.morty.bot.app.controls.commands;
 
-import me.morty.bot.app.command.CommandContext;
-import me.morty.bot.app.command.ICommand;
+import me.morty.bot.app.controls.CommandContext;
+import me.morty.bot.app.controls.ICommand;
 import me.morty.bot.app.lavaplayer.PlayerManager;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.managers.AudioManager;
@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.managers.AudioManager;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class PlayCommand implements ICommand {
+public class Play implements ICommand {
 
     @SuppressWarnings("ConstantConditions")
     @Override

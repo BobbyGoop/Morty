@@ -1,14 +1,14 @@
-package me.morty.bot.app.command.commands;
+package me.morty.bot.app.controls.commands;
 
-import me.morty.bot.app.command.CommandContext;
-import me.morty.bot.app.command.ICommand;
+import me.morty.bot.app.controls.CommandContext;
+import me.morty.bot.app.controls.ICommand;
 import me.morty.bot.app.lavaplayer.GuildMusicManager;
 import me.morty.bot.app.lavaplayer.PlayerManager;
 
 import java.util.List;
 
 
-public class StopCommand implements ICommand {
+public class Stop implements ICommand {
 
     @Override
     public void handle(CommandContext ctx) {

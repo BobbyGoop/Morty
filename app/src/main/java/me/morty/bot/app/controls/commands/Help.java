@@ -1,17 +1,17 @@
-package me.morty.bot.app.command.commands;
+package me.morty.bot.app.controls.commands;
 
 import me.morty.bot.app.CommandManager;
 import me.morty.bot.app.Config;
-import me.morty.bot.app.command.CommandContext;
-import me.morty.bot.app.command.ICommand;
+import me.morty.bot.app.controls.CommandContext;
+import me.morty.bot.app.controls.ICommand;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class HelpCommand implements ICommand {
+public class Help implements ICommand {
 
-    public HelpCommand(CommandManager manager) {
+    public Help(CommandManager manager) {
         this.manager = manager;
     }
 

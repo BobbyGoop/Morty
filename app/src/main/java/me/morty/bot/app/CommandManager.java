@@ -1,7 +1,7 @@
 package me.morty.bot.app;
 
-import me.morty.bot.app.command.CommandContext;
-import me.morty.bot.app.command.ICommand;
+import me.morty.bot.app.controls.CommandContext;
+import me.morty.bot.app.controls.ICommand;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
@@ -24,16 +24,16 @@ public class CommandManager {
     // Hash-set that contains commands
     private final Set<ICommand> commands = new HashSet<>();
 
-    // Maps command name and all its aliases to specific command implementation.
+    // Maps controls name and all its aliases to specific controls implementation.
     // Keys are lower-case to simplify user inout matching
     private final Map<String, ICommand> aliases = new HashMap<>();
 
     // PUBLIC METHODS
     /**
-     * Get command
+     * Get controls
      *
-     * @param search command name or alias
-     * @return command instance if exists, null otherwise
+     * @param search controls name or alias
+     * @return controls instance if exists, null otherwise
      */
     public ICommand getCommand(String search) {
         return aliases.get(search.toLowerCase());
@@ -68,7 +68,7 @@ public class CommandManager {
      *
      */
     private void parseCommands() {
-        Reflections reflections = new Reflections("me.morty.bot.app.command.commands");
+        Reflections reflections = new Reflections("me.morty.bot.app.controls.commands");
 
         Set<Class<? extends ICommand>> allClasses = reflections.getSubTypesOf(ICommand.class);
         for (Class<? extends ICommand> cmdClazz : allClasses) {
@@ -100,16 +100,16 @@ public class CommandManager {
     /**
      * Add Command if it not already exists
      *
-     * @param cmd command to add
+     * @param cmd controls to add
      */
     private void addCommand(ICommand cmd) {
-        // Holds command name and all its aliases in lower case
+        // Holds controls name and all its aliases in lower case
         Set<String> allNames = new HashSet<>();
 
-        // Put command name in set
+        // Put controls name in set
         allNames.add(cmd.getName().toLowerCase());
 
-        // Put all command aliases in set
+        // Put all controls aliases in set
         /*
          * Function forEach in the usual view
          * for (String alias : cmd.getAliases()){
@@ -126,10 +126,10 @@ public class CommandManager {
         // Adding to commands hash list
         commands.add(cmd);
 
-        // Save command under all of its names
+        // Save controls under all of its names
         allNames.forEach(trigger -> aliases.put(trigger, cmd));
 
-        log.info("Saved command '{}' with aliases: [{}]", cmd.getName(), String.join(",", cmd.getAliases()));
+        log.info("Saved controls '{}' with aliases: [{}]", cmd.getName(), String.join(",", cmd.getAliases()));
     }
 
     public Collection<ICommand> getCommands() {

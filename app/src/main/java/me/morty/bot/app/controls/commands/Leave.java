@@ -1,11 +1,11 @@
-package me.morty.bot.app.command.commands;
+package me.morty.bot.app.controls.commands;
 
-import me.morty.bot.app.command.CommandContext;
-import me.morty.bot.app.command.ICommand;
+import me.morty.bot.app.controls.CommandContext;
+import me.morty.bot.app.controls.ICommand;
 
 import java.util.List;
 
-public class LeaveCommand implements ICommand {
+public class Leave implements ICommand {
     @Override
     public void handle(CommandContext ctx) {
         if (ctx.getSelfMember().getVoiceState() == null || !ctx.getSelfMember().getVoiceState().inVoiceChannel()) {

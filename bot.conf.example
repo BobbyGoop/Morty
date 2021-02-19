@@ -1,10 +1,10 @@
-token: insert your token
+token: blablablablabla
 commands{
 
-    prefix: "place it here"
+    prefix: some_prefix
 
     adminitrator: [
-        insert Admin's IDs
+        1234567890
     ]
 
 }
