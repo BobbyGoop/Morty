@@ -19,7 +19,7 @@ public class Play implements ICommand {
         String request = String.join(" ", ctx.getArgs());
 
         if (!ctx.getMember().getVoiceState().inVoiceChannel()) {
-            ctx.send(builder -> builder.setColor(0x7289da)
+            ctx.send(builder -> builder.setColor(0x815ab2)
                     .setDescription(String.format("<@%s>, Вы должны находиться в голосовом канале", ctx.getAuthor().getId())));
             return;
         }

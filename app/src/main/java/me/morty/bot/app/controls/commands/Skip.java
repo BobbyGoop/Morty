@@ -17,7 +17,7 @@ public class Skip implements ICommand {
 
         if (errorBotState(ctx)) return;
         if (musicManager.audioPlayer.getPlayingTrack() == null) {
-            ctx.send(builder -> builder.setColor(0x7289da)
+            ctx.send(builder -> builder.setColor(0x815ab2)
                     .setDescription("В данный момент бот ничего не проигрывает"));
             return;
         } else {

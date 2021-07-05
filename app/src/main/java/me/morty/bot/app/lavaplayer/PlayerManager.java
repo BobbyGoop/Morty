@@ -44,7 +44,7 @@ public class PlayerManager {
                 if (playnext) {
                     musicManager.scheduler.playNext(track);
                     ctx.send(builder -> builder
-                            .setColor(0x7289da)
+                            .setColor(0x815ab2)
                             .setTitle("Воспроизведение")
                             .setDescription("**В начало очереди** добавлен трек:  ")
                             .appendDescription(String.format("[%s](%s)", track.getInfo().title, trackUrl))
@@ -53,7 +53,7 @@ public class PlayerManager {
                 }
                 else {musicManager.scheduler.queue(track);
                 ctx.send(builder -> builder
-                        .setColor(0x7289da)
+                        .setColor(0x815ab2)
                         .setTitle("Воспроизведение")
                         .setDescription("Добавлен трек:  ")
                         .appendDescription(String.format("[%s](%s)", track.getInfo().title, trackUrl))
@@ -69,7 +69,7 @@ public class PlayerManager {
                     if (playnext) {
                         musicManager.scheduler.playNext(firstFound);
                         ctx.send(builder -> builder
-                                .setColor(0x7289da)
+                                .setColor(0x815ab2)
                                 .setTitle("Воспроизведение")
                                 .setDescription("**В начало очереди** добавлен трек:  ")
                                 .appendDescription(String.format("[%s](%s)", firstFound.getInfo().title, firstFound.getInfo().uri))
@@ -77,7 +77,7 @@ public class PlayerManager {
                     }
                     else musicManager.scheduler.queue(firstFound);
                     ctx.send(builder -> builder
-                            .setColor(0x7289da)
+                            .setColor(0x815ab2)
                             .setTitle("Воспроизведение")
                             .setDescription("Добавлен трек:  ")
                             .appendDescription(String.format("[%s](%s)", firstFound.getInfo().title, firstFound.getInfo().uri))
@@ -87,7 +87,7 @@ public class PlayerManager {
                         musicManager.scheduler.queue(track);
                     }
                     ctx.send(builder -> builder
-                            .setColor(0x7289da)
+                            .setColor(0x815ab2)
                             .setTitle("Воспроизведение")
                             .setDescription("В очередь добавлен плейлист: ")
                             .appendDescription(String.format("`%s` треков из плейлиста [%s](%s)", tracks.size(), playlist.getName(), trackUrl))

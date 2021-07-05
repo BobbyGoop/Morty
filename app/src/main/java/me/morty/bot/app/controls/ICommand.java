@@ -19,17 +19,17 @@ public interface ICommand {
 
     default boolean errorBotState(CommandContext ctx) {
         if (!ctx.getMember().getVoiceState().inVoiceChannel()) {
-            ctx.send(builder -> builder.setColor(0x7289da)
+            ctx.send(builder -> builder.setColor(0x815ab2)
                     .setDescription(String.format("<@%s>, Вы должны находиться в голосовом канале", ctx.getAuthor().getId())));
             return true;
         }
         if (ctx.getSelfMember().getVoiceState().inVoiceChannel() && ctx.getMember().getVoiceState().equals(ctx.getSelfMember().getVoiceState())) {
-            ctx.send(builder -> builder.setColor(0x7289da)
+            ctx.send(builder -> builder.setColor(0x815ab2)
                     .setDescription(String.format("<@%s>, бот Morty и так трудится в голосовом канале", ctx.getAuthor().getId())));
             return true;
         }
         if (!ctx.getSelfMember().getVoiceState().inVoiceChannel()) {
-            ctx.send(builder -> builder.setColor(0x7289da)
+            ctx.send(builder -> builder.setColor(0x815ab2)
                     .setDescription("Бот должен находиться в голосовом канале"));
             return true;
         }

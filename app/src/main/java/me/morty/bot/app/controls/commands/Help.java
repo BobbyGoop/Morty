@@ -28,7 +28,7 @@ public class Help implements ICommand {
             manager.getCommands().stream().map(ICommand::getName).forEach(
                     (name) -> commandNames.add("`" +Config.getPrefix() + name + "`"));
 
-            ctx.send(builder -> builder.setColor(0x7289da)
+            ctx.send(builder -> builder.setColor(0x815ab2)
                         .setTitle("Команды")
                         .setDescription("Префикс для комманд: `" + prefix + "`")
                         .addField("Полный список", manager.getCommands().stream()
@@ -41,9 +41,9 @@ public class Help implements ICommand {
         ICommand command = manager.getCommand(args.get(0));
 
         if (command == null) {
-            ctx.send(builder -> builder.setColor(0x7289da).setDescription("Не было найдено команды по запросу"));
+            ctx.send(builder -> builder.setColor(0x815ab2).setDescription("Не было найдено команды по запросу"));
         } else {
-            ctx.send(builder -> builder.setColor(0x7289da)
+            ctx.send(builder -> builder.setColor(0x815ab2)
                     .setTitle(Config.getPrefix() + command.getName())
                     .addField("Описание: ", command.getHelp(), true)
                     .addField("Сокращения: ",command.getAliases().stream()

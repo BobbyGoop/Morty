@@ -12,7 +12,7 @@ public class Queue implements ICommand {
     public void handle(CommandContext ctx) {
         final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(ctx.getGuild());
         if (musicManager.scheduler.queue.size() == 0) {
-            ctx.send(builder -> builder.setColor(0x7289da)
+            ctx.send(builder -> builder.setColor(0x815ab2)
                     .setTitle("Очередь воспроизведения")
                     .setDescription("В данный момент список пуст"));
             return;
@@ -26,7 +26,7 @@ public class Queue implements ICommand {
                     .append("\n");
             number++;
         }
-        ctx.send(builder -> builder.setColor(0x7289da)
+        ctx.send(builder -> builder.setColor(0x815ab2)
                 .addField("Сейчас играет: ",
                         String.format("[%s](%s)",
                                 musicManager.audioPlayer.getPlayingTrack().getInfo().title,

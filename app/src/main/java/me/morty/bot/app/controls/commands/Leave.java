@@ -9,7 +9,7 @@ public class Leave implements ICommand {
     public void handle(CommandContext ctx) {
         if (errorBotState(ctx)) return;
         ctx.getGuild().getAudioManager().closeAudioConnection();
-        ctx.send(builder -> builder.setColor(0x7289da).setDescription("Бот покидает голосовой канал"));
+        ctx.send(builder -> builder.setColor(0x815ab2).setDescription("Бот покидает голосовой канал"));
     }
 
     @Override
