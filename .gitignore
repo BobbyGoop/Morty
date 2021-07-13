@@ -3,6 +3,8 @@ TODO.md
 .idea/
 # From https://github.com/github/gitignore/blob/master/Gradle.gitignore
 .gradle
+app/build
+app/out
 buildSrc/
 /list/
 /utilities/
