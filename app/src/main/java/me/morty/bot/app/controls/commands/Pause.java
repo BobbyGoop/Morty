@@ -6,7 +6,7 @@ import me.morty.bot.app.lavaplayer.GuildMusicManager;
 import me.morty.bot.app.lavaplayer.PlayerManager;
 import java.util.List;
 
-public class Stop implements ICommand {
+public class Pause implements ICommand {
 
     @Override
     public void handle(CommandContext ctx) {
@@ -19,14 +19,14 @@ public class Stop implements ICommand {
             return;
         }
 
-        musicManager.scheduler.player.stopTrack();
-        musicManager.scheduler.queue.clear();
-        ctx.send(builder -> builder.setColor(0x815ab2).setDescription("Воспроизведение остановлено"));
+        musicManager.scheduler.player.setPaused(true);
+       // musicManager.scheduler.queue.clear();
+        ctx.getChannel().sendMessage("Воспроизведение остановлено").queue();
     }
 
     @Override
     public String getName() {
-        return "stop";
+        return "pause";
     }
 
     @Override
@@ -34,8 +34,4 @@ public class Stop implements ICommand {
         return "Останавливает воспроизведение";
     }
 
-    @Override
-    public List<String> getAliases() {
-        return List.of("st");
-    }
 }

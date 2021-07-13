@@ -51,14 +51,15 @@ public class PlayerManager {
                             .appendDescription(String.format(", запрошенный <@%s>", authorID)));
 
                 }
-                else {musicManager.scheduler.queue(track);
-                ctx.send(builder -> builder
-                        .setColor(0x815ab2)
-                        .setTitle("Воспроизведение")
-                        .setDescription("Добавлен трек:  ")
-                        .appendDescription(String.format("[%s](%s)", track.getInfo().title, trackUrl))
-                        .appendDescription(String.format(", запрошенный <@%s>", authorID)));
-                }
+                else {
+                    musicManager.scheduler.queue(track);
+                    ctx.send(builder -> builder
+                            .setColor(0x815ab2)
+                            .setTitle("Воспроизведение")
+                            .setDescription("Добавлен трек:  ")
+                            .appendDescription(String.format("[%s](%s)", track.getInfo().title, trackUrl))
+                            .appendDescription(String.format(", запрошенный <@%s>", authorID)));
+                    }
             }
 
             @Override
@@ -75,13 +76,15 @@ public class PlayerManager {
                                 .appendDescription(String.format("[%s](%s)", firstFound.getInfo().title, firstFound.getInfo().uri))
                                 .appendDescription(String.format(", запросил <@%s>", authorID)));
                     }
-                    else musicManager.scheduler.queue(firstFound);
-                    ctx.send(builder -> builder
-                            .setColor(0x815ab2)
-                            .setTitle("Воспроизведение")
-                            .setDescription("Добавлен трек:  ")
-                            .appendDescription(String.format("[%s](%s)", firstFound.getInfo().title, firstFound.getInfo().uri))
-                            .appendDescription(String.format(", запросил <@%s>", authorID)));
+                    else {
+                        musicManager.scheduler.queue(firstFound);
+                        ctx.send(builder -> builder
+                                .setColor(0x815ab2)
+                                .setTitle("Воспроизведение")
+                                .setDescription("Добавлен трек:  ")
+                                .appendDescription(String.format("[%s](%s)", firstFound.getInfo().title, firstFound.getInfo().uri))
+                                .appendDescription(String.format(", запросил <@%s>", authorID)));
+                    }
                 } else {
                     for (AudioTrack track : tracks) {
                         musicManager.scheduler.queue(track);
