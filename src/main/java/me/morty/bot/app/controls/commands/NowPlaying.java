@@ -38,10 +38,6 @@ public class NowPlaying implements ICommand {
     }
 
     @Override
-    public String getHelp() {
-        return "";
-    }
-    @Override
     public List<String> getAliases(){
         return List.of("np");
     }

@@ -10,7 +10,9 @@ public interface ICommand {
     // Возвращает название команды без префикса
     String getName();
     // Нужна для команды помощи
-    String getHelp();
+    default String getHelp() {
+        return "Данная команда что то делает";
+    };
 
     default List<String> getAliases(){
         return List.of();

@@ -27,8 +27,4 @@ public class Continue implements ICommand {
         return "continue";
     }
 
-    @Override
-    public String getHelp() {
-        return null;
-    }
 }

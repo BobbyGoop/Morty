@@ -10,7 +10,5 @@ public class Config {
         return System.getenv("BOT_PREFIX");
     }
 
-    public static Integer getAdmin() {
-        return Integer.valueOf(System.getenv("BOT_ADMIN"));
-    }
+    public static String getAdmin() { return System.getenv("BOT_ADMIN"); }
 }

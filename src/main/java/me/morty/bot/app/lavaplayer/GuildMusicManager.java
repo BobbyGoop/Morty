@@ -8,6 +8,7 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 import me.morty.bot.app.controls.CommandContext;
 import me.morty.bot.app.util.Task;
+import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 
 import java.net.MalformedURLException;
@@ -99,12 +100,16 @@ public class GuildMusicManager extends AudioEventAdapter {
     @SuppressWarnings("ConstantConditions")
     private void joinVoiceChannel() {
         if (!ctx.getSelfMember().getVoiceState().inVoiceChannel()) {
-            final VoiceChannel memberVoiceChannel = ctx.getMember().getVoiceState().getChannel();
-
-            ctx.getGuild().getAudioManager().openAudioConnection(memberVoiceChannel);
-            ctx.getChannel().sendMessageFormat(
-                    String.format("Присоединяюсь к `\uD83d\uDD0A %s`", memberVoiceChannel.getName())
-            ).queue();
+            final GuildVoiceState memberVoiceChannel = ctx.getMember().getVoiceState();
+            if (memberVoiceChannel != null) {
+                ctx.getGuild().getAudioManager().openAudioConnection(memberVoiceChannel.getChannel());
+                ctx.getChannel().sendMessageFormat(
+                        String.format("Присоединяюсь к `\uD83d\uDD0A %s`", memberVoiceChannel.getChannel().getName())
+                ).queue();
+            }
+            else {
+                ctx.getChannel().sendMessage("Произошли неполадки").queue();
+            }
         }
     }
 

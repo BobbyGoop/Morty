@@ -37,11 +37,6 @@ public class Queue implements ICommand {
         return "queue";
     }
 
-    @Override
-    public String getHelp() {
-        return "null";
-    }
-
     private String formatTrackString(AudioTrack track) {
         return String.format("[%s](%s)", track.getInfo().title, track.getInfo().uri);
     }

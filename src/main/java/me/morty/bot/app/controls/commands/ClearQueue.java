@@ -27,11 +27,6 @@ public class ClearQueue implements ICommand {
     }
 
     @Override
-    public String getHelp() {
-        return null;
-    }
-
-    @Override
     public List<String> getAliases() {
         return List.of("cq");
     }
