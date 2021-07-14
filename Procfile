@@ -1,1 +1,1 @@
-worker: java -cp build/libs/* me.morty.bot.app.Bot
+worker: java -cp "build/libs/*" me.morty.bot.app.Bot
