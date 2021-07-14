@@ -121,7 +121,7 @@ public class GuildMusicManager extends AudioEventAdapter {
         }
     }
 
-    // TODO
+    // TODO: use this function as a reaction on starting new track
     private void sendMessage(String description) {
         ctx.send(builder -> builder
                 .setColor(0x815ab2)
