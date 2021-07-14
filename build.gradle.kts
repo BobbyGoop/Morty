@@ -15,14 +15,14 @@ repositories {
 
 dependencies {
     // Discord API
-    implementation("net.dv8tion", "JDA", "4.2.0_222")
+    implementation("net.dv8tion", "JDA", "4.2.0_247")
     implementation("com.jagrosh", "jda-utilities", "3.0.5")
 
     // Logging
     implementation("ch.qos.logback", "logback-classic", "1.3.0-alpha5")
 
     // Player
-    implementation("com.sedmelluq", "lavaplayer", "1.3.66")
+    implementation("com.sedmelluq", "lavaplayer", "1.3.73")
 
     // Utils
     implementation("org.reflections", "reflections", "0.9.12")
