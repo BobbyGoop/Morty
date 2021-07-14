@@ -3,12 +3,10 @@ package me.morty.bot.app.controls.commands;
 import me.morty.bot.app.controls.CommandContext;
 import me.morty.bot.app.controls.ICommand;
 import net.dv8tion.jda.api.entities.TextChannel;
-import org.jsoup.internal.StringUtil;
 
 import java.util.List;
 
 public class Echo implements ICommand {
-
 
     @Override
     public void handle(CommandContext ctx) {
@@ -20,10 +18,8 @@ public class Echo implements ICommand {
             return;
         }
 
-        channel.sendMessageFormat(StringUtil.join(args, " ")).queue();
-
+        channel.sendMessageFormat(String.join(" ", args)).queue();
     }
-
 
     @Override
     public String getName() {

@@ -11,6 +11,10 @@ java {
 
 repositories {
     gradlePluginPortal()
+
+    maven {
+        url = uri("https://m2.dv8tion.net/releases")
+    }
 }
 
 dependencies {
@@ -22,7 +26,7 @@ dependencies {
     implementation("ch.qos.logback", "logback-classic", "1.3.0-alpha5")
 
     // Player
-    implementation("com.sedmelluq", "lavaplayer", "1.3.73")
+    implementation("com.sedmelluq", "lavaplayer", "1.3.78")
 
     // Utils
     implementation("org.reflections", "reflections", "0.9.12")
