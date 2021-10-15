@@ -39,7 +39,6 @@ public class AudioPlayerLoadResultHandler implements AudioLoadResultHandler {
             for (AudioTrack track : tracks) {
                 musicManager.queue(track);
             }
-
             sendMessage(String.format("В очередь добавлен плейлист: `%s` треков из плейлиста [%s](%s)",
                     tracks.size(), playlist.getName(), request));
         }
