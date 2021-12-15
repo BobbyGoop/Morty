@@ -9,17 +9,17 @@ java {
     sourceCompatibility = JavaVersion.VERSION_11
 }
 
+
 repositories {
     gradlePluginPortal()
-
+    mavenCentral()
     maven {
         url = uri("https://m2.dv8tion.net/releases")
     }
 }
-
 dependencies {
     // Discord API
-    implementation("net.dv8tion", "JDA", "4.2.0_247")
+    implementation("net.dv8tion", "JDA", "4.4.0_350")
     implementation("com.jagrosh", "jda-utilities", "3.0.5")
 
     // Logging
