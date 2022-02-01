@@ -1,14 +1,18 @@
 plugins {
     java
+    application
 }
 
-group = "me.morty.bot.app.Bot"
+group = "me.morty.bot"
 version = "1.0"
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
+application {
+    mainClass.set("me.morty.bot.App")
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_15
+}
 
 repositories {
     gradlePluginPortal()
@@ -17,6 +21,7 @@ repositories {
         url = uri("https://m2.dv8tion.net/releases")
     }
 }
+
 dependencies {
     // Discord API
     implementation("net.dv8tion", "JDA", "4.4.0_350")
@@ -52,7 +57,7 @@ tasks {
 
     jar {
         manifest {
-            attributes["Main-Class"] = "me.morty.bot.app.Bot"
+            attributes["Main-Class"] = "me.morty.bot.App"
         }
     }
 
