@@ -11,7 +11,7 @@ public class Queue implements ICommand {
     @Override
     public void handle(CommandContext ctx) {
         final GuildMusicManager musicManager = PlayerManager.getMusicManager(ctx);
-        if (musicManager.queue.size() == 0) {
+        if (musicManager.queue.isEmpty()) {
             ctx.send(builder -> builder.setColor(0x815ab2)
                     .setTitle("Очередь воспроизведения")
                     .setDescription("В данный момент список пуст"));

@@ -1,8 +1,8 @@
 package me.morty.bot.controls.commands;
 
-import me.morty.bot.controls.ICommand;
 import me.morty.bot.Config;
 import me.morty.bot.controls.CommandContext;
+import me.morty.bot.controls.ICommand;
 
 public class Shutdown implements ICommand {
     @Override
@@ -11,11 +11,9 @@ public class Shutdown implements ICommand {
         if (ctx.getAuthor().getId().equals(Config.getAdmin())) {
             ctx.getChannel().sendMessage("App is shutting down").queue();
             ctx.getJDA().shutdown();
-            return;
-        }
-        else {
+        } else {
             ctx.getChannel().sendMessage(String.format("Only admin - %s --- %s - has permissions " +
-                    "to shut down the bot",  ctx.getJDA().getUserById(Config.getAdmin()), Config.getAdmin())).queue();
+                    "to shut down the bot", ctx.getJDA().getUserById(Config.getAdmin()), Config.getAdmin())).queue();
         }
     }
 

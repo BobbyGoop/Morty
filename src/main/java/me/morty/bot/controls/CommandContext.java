@@ -2,27 +2,29 @@ package me.morty.bot.controls;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+
 import java.util.List;
 import java.util.function.Consumer;
 
 public class CommandContext implements ICommandContext {
 
-    private final GuildMessageReceivedEvent event;
+    private final MessageReceivedEvent event;
     private final List<String> args;
 
-    public CommandContext(GuildMessageReceivedEvent event, List<String> args){
+    public CommandContext(MessageReceivedEvent event, List<String> args){
         this.event = event;
         this.args = args;
     }
+
     @Override
     public Guild getGuild() {
         return this.getEvent().getGuild();
     }
 
     @Override
-    public GuildMessageReceivedEvent getEvent(){
+    public MessageReceivedEvent getEvent(){
         return this.event;
     }
 
@@ -35,6 +37,6 @@ public class CommandContext implements ICommandContext {
         final EmbedBuilder builder = new EmbedBuilder();
 
         setup.accept(builder);
-        channel.sendMessage(builder.build()).queue();
+        channel.sendMessageEmbeds(builder.build()).queue();
     }
 }

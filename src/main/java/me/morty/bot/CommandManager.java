@@ -2,10 +2,11 @@ package me.morty.bot;
 
 import me.morty.bot.controls.CommandContext;
 import me.morty.bot.controls.ICommand;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -44,13 +45,14 @@ public class CommandManager {
      *
      * @param event incoming event
      */
-    void handle(GuildMessageReceivedEvent event) {
+    void handle(MessageReceivedEvent event) {
         // Received message from user
         String[] split = event.getMessage().getContentRaw()
                 .replaceFirst("(?i)" + Pattern.quote(Config.getPrefix()), "")
                 .split("\\s+");
 
         String invoke = split[0].toLowerCase();
+
         ICommand cmd = this.getCommand(invoke);
         if (cmd != null) {
             //event.getChannel().sendTyping().queue();
@@ -79,6 +81,7 @@ public class CommandManager {
             }
         }
     }
+
 
     /**
      * Get instance of ICommand from Class reference
@@ -109,12 +112,6 @@ public class CommandManager {
         allNames.add(cmd.getName().toLowerCase());
 
         // Put all controls aliases in set
-        /*
-         * Function forEach in the usual view
-         * for (String alias : cmd.getAliases()){
-         *             allNames.add(alias.toLowerCase());
-         *         }
-         */
         cmd.getAliases().forEach(alias -> allNames.add(alias.toLowerCase()));
 
         // Check that any of that names has not already registered

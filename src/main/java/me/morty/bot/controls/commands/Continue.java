@@ -1,9 +1,9 @@
 package me.morty.bot.controls.commands;
 
+import me.morty.bot.controls.CommandContext;
 import me.morty.bot.controls.ICommand;
 import me.morty.bot.lavaplayer.GuildMusicManager;
 import me.morty.bot.lavaplayer.PlayerManager;
-import me.morty.bot.controls.CommandContext;
 
 public class Continue implements ICommand {
     @Override

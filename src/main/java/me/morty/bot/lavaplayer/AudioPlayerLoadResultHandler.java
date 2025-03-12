@@ -34,7 +34,7 @@ public class AudioPlayerLoadResultHandler implements AudioLoadResultHandler {
     public void playlistLoaded(AudioPlaylist playlist) {
         List<AudioTrack> tracks = playlist.getTracks();
         if (playlist.isSearchResult()) {
-            scheduleTrack(tracks.get(0));
+            scheduleTrack(tracks.getFirst());
         } else {
             for (AudioTrack track : tracks) {
                 musicManager.queue(track);

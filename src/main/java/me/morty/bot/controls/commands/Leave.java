@@ -1,7 +1,7 @@
 package me.morty.bot.controls.commands;
 
-import me.morty.bot.controls.ICommand;
 import me.morty.bot.controls.CommandContext;
+import me.morty.bot.controls.ICommand;
 
 import java.util.List;
 

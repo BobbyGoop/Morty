@@ -1,9 +1,9 @@
 package me.morty.bot.controls.commands;
 
+import me.morty.bot.controls.CommandContext;
 import me.morty.bot.controls.ICommand;
 import me.morty.bot.lavaplayer.GuildMusicManager;
 import me.morty.bot.lavaplayer.PlayerManager;
-import me.morty.bot.controls.CommandContext;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class NowPlaying implements ICommand {
     @Override
     public void handle(CommandContext ctx) {
         final GuildMusicManager musicManager = PlayerManager.getMusicManager(ctx);
-        if (!ctx.getMember().getVoiceState().inVoiceChannel()) {
+        if (!ctx.getMember().getVoiceState().inAudioChannel()) {
             ctx.send(builder -> builder.setColor(0x815ab2)
                     .setDescription(String.format("<@%s>, Вы должны находиться в голосовом канале", ctx.getAuthor().getId())));
             return;

@@ -1,8 +1,8 @@
 package me.morty.bot.controls.commands;
 
+import me.morty.bot.controls.CommandContext;
 import me.morty.bot.controls.ICommand;
 import me.morty.bot.lavaplayer.PlayerManager;
-import me.morty.bot.controls.CommandContext;
 
 public class Play implements ICommand {
 
@@ -11,12 +11,12 @@ public class Play implements ICommand {
     public void handle(CommandContext ctx) {
         String request = String.join(" ", ctx.getArgs());
 
-        if (!ctx.getMember().getVoiceState().inVoiceChannel()) {
+        if (!ctx.getMember().getVoiceState().inAudioChannel()) {
             ctx.send(builder -> builder.setColor(0x815ab2)
                     .setDescription(String.format("<@%s>, Вы должны находиться в голосовом канале", ctx.getAuthor().getId())));
             return;
         }
-        
+
         PlayerManager.getMusicManager(ctx).loadTracks(ctx, request, false);
     }
 

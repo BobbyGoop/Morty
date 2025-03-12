@@ -19,7 +19,7 @@ public class Pause implements ICommand {
         }
 
         musicManager.player.setPaused(true);
-       // musicManager.scheduler.queue.clear();
+        // musicManager.scheduler.queue.clear();
         ctx.getChannel().sendMessage("Воспроизведение остановлено").queue();
     }
 

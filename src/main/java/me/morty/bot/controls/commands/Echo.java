@@ -1,8 +1,8 @@
 package me.morty.bot.controls.commands;
 
-import me.morty.bot.controls.ICommand;
 import me.morty.bot.controls.CommandContext;
-import net.dv8tion.jda.api.entities.TextChannel;
+import me.morty.bot.controls.ICommand;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 
 import java.util.List;
 
@@ -27,8 +27,8 @@ public class Echo implements ICommand {
     }
 
     @Override
-    public String getHelp(){
-       return " Отвечает тем же сообщением";
+    public String getHelp() {
+        return " Отвечает тем же сообщением";
     }
 }
 

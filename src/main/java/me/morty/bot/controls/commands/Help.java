@@ -1,9 +1,9 @@
 package me.morty.bot.controls.commands;
 
-import me.morty.bot.Config;
-import me.morty.bot.controls.ICommand;
 import me.morty.bot.CommandManager;
+import me.morty.bot.Config;
 import me.morty.bot.controls.CommandContext;
+import me.morty.bot.controls.ICommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +26,14 @@ public class Help implements ICommand {
 
 
             manager.getCommands().stream().map(ICommand::getName).forEach(
-                    (name) -> commandNames.add("`" +Config.getPrefix() + name + "`"));
+                    (name) -> commandNames.add("`" + Config.getPrefix() + name + "`"));
 
             ctx.send(builder -> builder.setColor(0x815ab2)
-                        .setTitle("Команды")
-                        .setDescription("Префикс для комманд: `" + prefix + "`")
-                        .addField("Полный список", manager.getCommands().stream()
-                                        .map(cmd -> "`" + prefix + cmd.getName() + "`")
-                                        .collect(Collectors.joining(" ")),true)
+                    .setTitle("Команды")
+                    .setDescription("Префикс для комманд: `" + prefix + "`")
+                    .addField("Полный список", manager.getCommands().stream()
+                            .map(cmd -> "`" + prefix + cmd.getName() + "`")
+                            .collect(Collectors.joining(" ")), true)
             );
             return;
         }
@@ -46,7 +46,7 @@ public class Help implements ICommand {
             ctx.send(builder -> builder.setColor(0x815ab2)
                     .setTitle(Config.getPrefix() + command.getName())
                     .addField("Описание: ", command.getHelp(), true)
-                    .addField("Сокращения: ",command.getAliases().stream()
+                    .addField("Сокращения: ", command.getAliases().stream()
                             .map(cmd -> "`" + prefix + cmd + "`")
                             .collect(Collectors.joining(" ")), true)
             );

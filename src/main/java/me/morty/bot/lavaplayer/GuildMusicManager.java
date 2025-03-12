@@ -6,10 +6,11 @@ import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
+import dev.lavalink.youtube.YoutubeAudioSourceManager;
 import me.morty.bot.controls.CommandContext;
 import me.morty.bot.util.Task;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
-import net.dv8tion.jda.api.entities.VoiceChannel;
+import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,6 +32,9 @@ public class GuildMusicManager extends AudioEventAdapter {
         this.ctx = ctx;
         this.player = audioPlayerManager.createPlayer();
         this.player.addListener(this);
+
+        YoutubeAudioSourceManager ytSourceManager = new YoutubeAudioSourceManager();
+        audioPlayerManager.registerSourceManager(ytSourceManager);
 
         AudioSourceManagers.registerRemoteSources(audioPlayerManager);
         AudioSourceManagers.registerLocalSource(audioPlayerManager);
@@ -99,7 +103,7 @@ public class GuildMusicManager extends AudioEventAdapter {
 
     @SuppressWarnings("ConstantConditions")
     private void joinVoiceChannel() {
-        if (!ctx.getSelfMember().getVoiceState().inVoiceChannel()) {
+        if (!ctx.getSelfMember().getVoiceState().inAudioChannel()) {
             final GuildVoiceState memberVoiceChannel = ctx.getMember().getVoiceState();
             if (memberVoiceChannel != null) {
                 ctx.getGuild().getAudioManager().openAudioConnection(memberVoiceChannel.getChannel());
@@ -115,8 +119,8 @@ public class GuildMusicManager extends AudioEventAdapter {
 
     @SuppressWarnings("ConstantConditions")
     private void leaveVoiceChannel() {
-        if (ctx.getSelfMember().getVoiceState().inVoiceChannel()) {
-            final VoiceChannel memberVoiceChannel = ctx.getMember().getVoiceState().getChannel();
+        if (ctx.getSelfMember().getVoiceState().inAudioChannel()) {
+            final VoiceChannel memberVoiceChannel = ctx.getMember().getVoiceState().getChannel().asVoiceChannel();
 
             ctx.getGuild().getAudioManager().closeAudioConnection();
             // TODO: English, please

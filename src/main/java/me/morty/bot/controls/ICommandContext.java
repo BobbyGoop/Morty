@@ -1,9 +1,13 @@
 package me.morty.bot.controls;
 
-import net.dv8tion.jda.api.sharding.ShardManager;
 import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.entities.*;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.sharding.ShardManager;
 
 /**
  * Dummy class that holds the basics for a controls context
@@ -20,19 +24,19 @@ public interface ICommandContext {
     }
 
     /**
-     * Returns the {@link net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent message event} that was received for this instance
+     * Returns the {@link net.dv8tion.jda.api.events.message.MessageReceivedEvent message event} that was received for this instance
      *
-     * @return the {@link net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent message event} that was received for this instance
+     * @return the {@link net.dv8tion.jda.api.events.message.MessageReceivedEvent message event} that was received for this instance
      */
-    GuildMessageReceivedEvent getEvent();
+    MessageReceivedEvent getEvent();
 
     /**
-     * Returns the {@link net.dv8tion.jda.api.entities.TextChannel channel} that the message for this event was send in
+     * Returns the {@link net.dv8tion.jda.api.entities.channel.concrete.TextChannel channel} that the message for this event was send in
      *
-     * @return the {@link net.dv8tion.jda.api.entities.TextChannel channel} that the message for this event was send in
+     * @return the {@link net.dv8tion.jda.api.entities.channel.concrete.TextChannel channel} that the message for this event was send in
      */
     default TextChannel getChannel() {
-        return this.getEvent().getChannel();
+        return this.getEvent().getChannel().asTextChannel();
     }
 
     /**
